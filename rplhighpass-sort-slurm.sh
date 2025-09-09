@@ -6,7 +6,7 @@
 #SBATCH --ntasks=1   # number of processor cores (i.e. tasks)
 #SBATCH --nodes=1   # number of nodes
 #SBATCH --cpus-per-task=1      # number of processors per task
-#SBATCH -J "rplhighpass"   # job name
+#SBATCH -J "rplhighpass-sort-slurm"   # job name
 
 ## /SBATCH -p general # partition (queue)
 #SBATCH -o rplhighpass-slurm.%N.%j.out # STDOUT
@@ -17,11 +17,6 @@
 source ~/.bashrc
 envarg=`/data/src/PyHipp/envlist.py`
 conda activate $envarg
-
-python -u -c "import PyHipp as pyh; \
-import time; \
-pyh.RPLLFP(saveLevel=1); \
-print(time.localtime());"
 
 python -u -c "import PyHipp as pyh; \
 import time; \
